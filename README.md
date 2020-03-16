@@ -1,4 +1,4 @@
-# lookatmynotes
+# look at my notes
 
 ## Project setup
 ```
