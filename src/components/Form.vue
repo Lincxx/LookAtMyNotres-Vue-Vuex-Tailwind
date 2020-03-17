@@ -34,7 +34,7 @@
        <button
         v-else
         class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded mt-4 mr-4 flex-grow"
-        @click="edit"
+        @click="save"
       >
         Edit
       </button>
@@ -51,6 +51,14 @@ export default {
     edit: {
       type: Boolean,
       default: false
+    },
+    note: {
+      type: Object,
+      default: () => ({
+        id: '',
+        title: '',
+        content: ''
+      })
     }
   },
   data() {
@@ -58,6 +66,9 @@ export default {
       title: '',
       content: ''
     }
+  },
+  created() {
+    this.assignValues()
   },
   methods: {
     add() {
@@ -67,8 +78,22 @@ export default {
         content: this.content
       })
       this.$router.push('/')
+    },
+    save() {
+      this.$store.dispatch('removeNote', this.note.id)
+      this.$store.dispatch('addNote', {
+        id: this.note.id,
+        title: this.title,
+        content: this.content
+      })
+      this.$router.push('/')
+    },
+    async assignValues() {
+      await this.$nextTick
+      this.title = this.note.title
+      this.content = this.note.content
     }
-  },
+  }
 }
 </script>
 

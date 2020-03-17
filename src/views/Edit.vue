@@ -1,5 +1,5 @@
 <template>
-  <Form edit/>
+  <Form edit :note="note" />
 </template>
 
 <script>

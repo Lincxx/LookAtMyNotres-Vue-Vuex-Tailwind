@@ -19,7 +19,7 @@ export default new Vuex.Store({
     ]
   },
   getters: {
-    getNotes: state => state.notes,
+    getNotes: state => state.notes.reverse(),
     getNote: state => id => state.notes.find(note => note.id === id)
   },
   mutations: {
